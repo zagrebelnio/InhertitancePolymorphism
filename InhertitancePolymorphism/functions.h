@@ -4,11 +4,14 @@
 #include <ctime>
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include "number.h"
 #define MIN -10
 #define MAX 10
 
 using namespace std;
+
+bool is_number(string s);
 
 unsigned int enter_size(string s);
 

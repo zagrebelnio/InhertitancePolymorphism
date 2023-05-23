@@ -1,10 +1,38 @@
 #include "functions.h"
 
+bool is_number(string s) {
+	if (s.empty()) {
+		return false;
+	}
+	else {
+		for (int i = 0; i < s.length(); i++) {
+			if (!isdigit(s[i])) return false;
+		}
+		return true;
+	}
+}
+
 unsigned int enter_size(string s) {
-	unsigned int size;
-	cout << "Скільки об'єктів " << s << " чисел слід створити?" << endl;
-	cin >> size;
-	return size;
+	try {
+		int size;
+		string s;
+		cout << "Скільки об'єктів " << s << " чисел слід створити?" << endl;
+		cin >> s;
+		if (!is_number(s)) {
+			string error = "Кількість чисел повинна бути цілим невід'ємним числом.\n";
+			throw error;
+		}
+		size = stoi(s);
+		return size;
+	}
+	catch (string text) {
+		string error = "Помилка введення кількості чисел. " + text;
+		throw error;
+	}
+	catch (out_of_range const&) {
+		string error = "Помилка введення кількості чисел. Число занадто велике.\n";
+		throw error;
+	}
 }
 
 double generate_number(double min, double max) {
